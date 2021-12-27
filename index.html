@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Sea Battle</title>
+</head>
+<body>
+<header>
+<h1>Морской бой</h1>
+</header>
+<main>
+    <div class="app-body">
+        <div data-side="player"></div>
+        <div class="app-menu">
+            <div class="app-actions" data-scene="preparation">
+                <button class="app-action" data-computer="start" disabled>
+                    Играть
+                </button>
+                <button class="app-action" data-action="manually">
+                    Расставить корабли вручную
+                </button>
+                <button class="app-action" data-action="randomize">
+                    Расставить корабли случайно
+                </button>
+            </div>
+
+            <div class="app-actions hidden" data-scene="battle">
+                <div class="battlefield-status">Ваш ход</div>
+                <button class="app-action" data-action="giveup">Сдаться</button>
+                <button class="app-action" data-action="again">
+                    Играть еще
+                </button>
+            </div>
+        </div>
+        <div data-side="opponent"></div>
+    </div>
+
+</main>
+<script src="js/additional.js"></script>
+<script src="js/Mouse.js"></script>
+
+<script src="js/Application.js"></script>
+<script src="js/Scene.js"></script>
+<script src="js/PreparationScene.js"></script>
+<script src="js/BattleScene.js"></script>
+
+<script src="js/Battlefield.js"></script>
+<script src="js/BattlefieldView.js"></script>
+
+<script src="js/Ship.js"></script>
+<script src="js/ShipView.js"></script>
+
+<script src="js/Shot.js"></script>
+<script src="js/ShotView.js"></script>
+
+<script src="js/script.js"></script>
+</body>
+</html>
