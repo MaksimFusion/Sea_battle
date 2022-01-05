@@ -1,7 +1,6 @@
 class BattleScene extends Scene {
     playerTurn = true;
     status = null;
-
     removeEventListeners = [];
 
     init() {
