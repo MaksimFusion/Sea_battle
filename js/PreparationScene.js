@@ -37,27 +37,29 @@ class PreparationScene extends Scene {
         document.querySelector(' [data-scene = "preparation"] ')
             .classList.remove("hidden");
 
-        const randomizeButton = document.querySelector('[data-action= "randomize"]');
         const manuallyButton = document.querySelector('[data-action= "manually"]');
+        const randomizeButton = document.querySelector('[data-action= "randomize"]');
         const startButton = document.querySelector('[data-computer="start"]');
 
 
 
         this.removeEventListeners.push(
-            addEventListener(startButton, "click", () => this.startBattle()));
+            addListener(manuallyButton,"click", ()=> this.manually()));
         this.removeEventListeners.push(
-            addEventListener(randomizeButton, "click", ()=> this.randomize()));
+            addListener(randomizeButton, "click", ()=> this.randomize()));
+        this.removeEventListeners.push(
+            addListener(startButton, "click", () => this.startBattle()));
 
-        this.removeEventListeners.push(
-            addEventListener(manuallyButton,"click", ()=> this.manually()));
     }
 
     stop() {
         for (const removeEventListener of this.removeEventListeners) {
             removeEventListener();
         }
+
         this.removeEventListeners = [];
     }
+
 
     update() {
         const {mouse, player} = this.app;

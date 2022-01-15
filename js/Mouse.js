@@ -13,8 +13,8 @@ class Mouse {
     left = false;
     pLeft = false;
 
-    delta = 0;
-    pDelta = 0;
+    delta = false;
+    pDelta = false;
 
     constructor(element) {
         this.element = element;
@@ -22,7 +22,7 @@ class Mouse {
         const update = (e) => {
             this.x = e.clientX;
             this.y = e.clientY;
-            this.delta = 0;
+            this.delta = false;
             this.under = true;
         }
 
@@ -50,6 +50,11 @@ class Mouse {
             if (e.button === 0) {
                 this.left = true;
             }
+            if (e.altKey){
+                this.x = e.clientX;
+                this.y = e.clientY;
+                this.delta = true;
+            }
         });
 
         element.addEventListener("mouseup", (e) => {
@@ -61,14 +66,7 @@ class Mouse {
             }
         });
 
-        element.addEventListener("wheel", (e) => {
-            this.tick();
 
-            this.x = e.clientX;
-            this.y = e.clientY;
-            this.delta = e.deltaY > 0 ? 1 : -1;
-            this.under = true;
-        });
     }
 
     tick() {
@@ -77,6 +75,6 @@ class Mouse {
         this.pUnder = this.under;
         this.pLeft = this.left;
         this.pDelta = this.delta;
-        this.delta = 0;
+        this.delta = false;
     }
 }

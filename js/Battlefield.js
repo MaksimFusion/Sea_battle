@@ -37,7 +37,6 @@ class Battlefield {
 
                 row.push(item);
             }
-
             matrix.push(row);
         }
 
@@ -166,14 +165,14 @@ class Battlefield {
         return ships.length;
     }
 
-    addShot(shot) {
+    addShot(shot, polygon) {
         for (const {x, y} of this.shots) {
             if (x === shot.x && y === shot.y) {
                 return false;
             }
         }
         this.shots.push(shot);
-        this.#changed = true;
+
 
         const matrix = this.matrix;
         const {x, y} = shot;
@@ -199,6 +198,7 @@ class Battlefield {
             }
             if (killed) {
                 ship.killed = true;
+
                 for (let i = 0; i < ship.size; i++) {
                     const cx = ship.x + dx * i;
                     const cy = ship.y + dy * i;
@@ -207,18 +207,19 @@ class Battlefield {
                         (shot) => shot.x === cx && shot.y === cy);
                     shot.setVariant("killed");
 
-                    for (let y = ship.y - 1; y < ship.y + ship.size * dy + dx + 1; y++) {
-                        for (let x = ship.x - 1; x < ship.x + ship.size * dx + dy + 1; x++) {
-                            if (this.infield(x, y)) {
-                            const shot = matrix[y][x];
-                            this.shots.push(shot);
-                            }
-                    
-                        }
+                }
+
+            }
+            if (ship.killed){
+            for (let y = ship.y - 1; y < ship.y + ship.size * dy + dx + 1 ; y++) {
+                for (let x = ship.x - 1; x < ship.x + ship.size * dx + dy + 1; x++) {
+                    if (this.infield(x, y)) {
+                        const shot = new ShotView(x, y)
+                        this.addShot(shot);
                     }
-
-                }}
-
+                }
+            }
+        }
         }
         this.#changed = true;
         return true;
@@ -229,7 +230,7 @@ class Battlefield {
             return false
         }
         const index = this.shots.indexOf(shot)
-        this.shots.slice(index, 1)
+        this.shots.slice(index, 1);
 
         this.#changed = true;
         return true;

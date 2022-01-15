@@ -9,5 +9,6 @@ class Scene {
     start() {}
     update() {}
     stop() {}
+    makeShot() {}
 
 }

@@ -71,8 +71,6 @@ class BattlefieldView extends Battlefield {
             return false;
         }
 if (this.showShips) {
-
-
     this.dock.append(ship.div);
 
     if (ship.placed) {

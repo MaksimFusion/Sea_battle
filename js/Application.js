@@ -5,6 +5,7 @@ class Application {
     opponent = null;
 
     scenes = {};
+
     activeScene = null;
 
     constructor(scenes = {}) {
